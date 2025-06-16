@@ -17,111 +17,82 @@ sticky: true
 # this page will appear in starred articles
 star: true
 ---
-
 # Google Drive
+Supports team drives (fill in the directory ID of the team drive for the root directory ID)
 
-Support team disk
-### **Get client_id, client_secret, refresh_token**
-Refer to https://alist.example.com/tool/google/request
+## 1. Necessary Conditions
+::: warning Notes
+1. The machine where the OpenList service is deployed must first be able to connect to Google Drive.
+2. The Google Drive API service must be activated. For activation instructions, see [Enabling the Google Drive API](#enabling-the-google-drive-api).
+> Refer to [Google Workspace > Google Drive > Guide](https://developers.google.com/workspace/drive/api/quickstart/js): https://developers.google.com/workspace/drive/api/quickstart/js
 
-### **Root directory file_id**
-Similar to Aliyundrive, the last string of the official website URL, such as:
+## 2. Preparations for Integration
 
-![google](/img/drivers/googledrive.png)
+### 2.1. Enabling the Google Drive API
+1. On the [guide page]((https://developers.google.com/workspace/drive/api/quickstart/js)), find the "Enable API" button, click to enter the quick activation interface, and complete the activation after clicking "Next" and "Confirm".
+2. You can also visit the [Google Drive API management interface](https://console.cloud.google.com/apis/library/drive.googleapis.com), find the "Enable" button at the top, and wait for the activation to complete after clicking.
+3. **Quota and System Limit Management** (optional): Switch to the "Quota and System Limits" tab and set appropriate quotas and limits according to your usage and needs.
 
-### **refresh_token [Google Service Account/SA]**
-> You will be allowed to use Google Service Account/SA to access files in your Google Drive in v3.17.0 and later versions. 
+### 2.2. Creating an OAuth Client (optional, no need to create if using OpenList's provided client)
+1. In the [Credentials interface](https://console.cloud.google.com/apis/credentials?hl=zh-cn), click the "Create Credentials" drop-down menu, and select and click "OAuth Client ID".
+2. In the pop-up window, select "Web Application" and fill in the application name.
+3. In "Authorized redirect URIs", fill in `https://api.oplist.org/googleui/callback`.
+4. Click the "Create" button to complete the creation of the OAuth client. **Note**: Please copy and save the "Client ID" and "Client Secret" for subsequent use.
+5. Add yourself to the test users: find the "Target" menu on the left, click to enter, find the "+ Add User" button below "Test Users", click, enter your Google account email address, and click "Add".
 
-> Simply fill in the **refresh_token** field with the **path to the SA file** or the **folder where it is located** to access your Google Drive using the Google Service Account/SA.
+### 2.3. Obtaining the Access Token and Refresh Token
+1. Open the [OpenList Google Authorization Page](https://api.oplist.org/) **If self-hosted, visit the self-hosted service**.
+2. In the drop-down box on the page, select `Google Drive Team`.
 
-The following methods will be allowed(recommend 1st):
-  - `/accounts` This method will automatically use all SA files in that folder. 
-  - `/accounts/the_sa_file.json` 
+![google-00](/img/drivers/google/google-00.png)
 
-As in the example above, all **paths must be absolute**, and the SA file name must also be ***.json** 
+3. If you created an OAuth client ID in the above steps, enter the newly created "Client ID" and "Client Secret" in the following input boxes.
 
-#### **Generate your SA file**
-> For generating SA files, you can see the following link, [xyou365/AutoRclone](https://github.com/xyou365/AutoRclone/blob/master/Readme.md "AutoRclone")
+![google-01-01](/img/drivers/google/google-01-01.png)
 
-## **Detailed Text Tutorial**
+Otherwise, check ☑️ to use the API provided by OpenList. **⚠️ If using community public welfare services, the built-in client ID and application secret of the community public welfare service are used at this time**.
 
-::: warning matters needing attention
+![google-01-02](/img/drivers/google/google-01-02.png)
 
-1. The machine that builds the Alist service must first be able to connect to the Google network disk (scientific connection is not possible, the program can be connected), or directly use a foreign server~
-2. The test version of the application token seems to be invalid after a while (about 7 days). If a long-term stable token is required, it seems that the application can only be released?
-3. A client ID and secret key can only get token once, and you can only recreate **OAuth client ID** when you get it again, and use a new client ID and secret key
+4. Click the "Get Authorization" button, and the system will jump to the Google authorization page. Log in to your Google account and authorize OpenList to access your Google Drive.
 
-:::
+![google-02](/img/drivers/google/google-02.png)
 
+5. If the prompt "This app is not verified by Google" appears, click "Advanced", then click "Go to oplist.org (unsafe)" to continue. (If self-hosted or using community public welfare services, the domain name here shall be based on the actual domain name of the public welfare service; please screen carefully).
 
+![google-03](/img/drivers/google/google-03.png)
 
-**First open https://alist.example.com/tool/google/request `1. First click Use own client and then create client (Create client)`**
+6. Please pay attention to the permission information on the authorization page (in the red box below) to ensure that it only accesses your **Google Drive files**. If you find that the permissions in the public welfare service exceed accessing **Google Drive**, please raise an issue at [openlistteam/docs/issues](https://github.com/openlistteam/docs/issues).
 
-![Google](/img/drivers/google/Google-0.png)
+![google-04](/img/drivers/google/google-04.png)
 
-**If you do not have a Google account, log in to your Google account first, and click `Enabled APIs and Services` or `Library` to choose one of the two options**
+6. After successful authorization, the system will return a "Refresh Token" and "Access Token". Please copy and save the token.
 
-![Google](/img/drivers/google/Google-1.png)
+![google-04](/img/drivers/google/google-05.png)
 
-**Click `Enabled APIs and Services` or `Library` to enter, then drop down to find `Google Driver API`**
+## 3. Adding Google Drive to Alist
 
-![Google](/img/drivers/google/Google-2.png)
+### 3.1. Configuration Instructions
+#### 3.1.1. **Root Folder ID**
+Similar to Alibaba Cloud Drive, it is the last string in the official website URL, such as:
 
-Click **`Google Driver API`** to enter, see the diagram below to enable the API service
+![google](/img/drivers/google/googledrive-dir.png)
 
-![Google](/img/drivers/google/Google-3.png)
+### 3.2. Starting to Add
+1. Open the Alist management interface and click "Storage" in the left menu.
+2. On the storage list page, click the "Add Storage" button in the upper right corner.
+3. Select the driver as `Google Drive`.
 
-**`Google Driver API`** After enabling, we will create an application - look carefully~~~
+![google](/img/drivers/google/google-06.png)
 
+4. Enter the mounting path, such as: `google-drive`.
+5. Fill in the root folder ID obtained above in "Root Folder ID".
+6. Enter your "Oauth Client ID" in "Client ID" and your "Oauth Client Secret" in "Client Secret".
+8. Enter the refresh token obtained above in "Refresh Token" (if not obtained, please refer to [Preparations for Integration](#2-preparations-for-integration)).
 
+![google](/img/drivers/google/google-07.png)
 
-If it is the first creation, there should be **` ❗If you need to create an OAuth client ID, you must first configure the unified screen `**, let's go to configure it, click on the page  **`Configure the consent screen`** You can jump to the configuration interface.
-
- ==Look at the next picture for the configuration tutorial== , come back to see this picture after configuration~
-
-Callback parameter URL: **https://alist.example.com/tool/google/callback**
-
-![Google](/img/drivers/google/Google-4-1.png)
-
-**`OAuth consent screen`** Configuration tutorial, if it has been configured, just ignore this picture (you can zoom in if you can’t see it clearly)
-
-![Google](/img/drivers/google/Google-6.png)
-
-After we create **`OAuth Client ID`**, click on the **`OAuth Client ID`** we just created and write whatever you want~ After entering, there are `Client ID` and `Client Secret`
-
-![Google](/img/drivers/google/Google-7.png)
-
-After getting `Client ID` and `Client Secret`
-
-Let's go back to the beginning **https://alist.example.com/tool/google/request** and fill in `Client ID` and `Client Secret`
-
- ==Remember to check the option behind **Cloud Disk** and **Album** when obtaining authorization==
-
-Then start to log in to the account. If it prompts **not verified by Google**, click on the left to continue. After authorization, you will see our token refreshed.
-
-After the above operations, we also got the `refresh token`, let’s go to **`Alist background`** Add account to add it~
-
-![Google](/img/drivers/google/Google-8.png)
-
-After adding an account in the background and saving it, we will mount it successfully~ Let's take a look
-
-The left side is mounted by Alist, and the right side is the contents of Google Drive~ **o(*^＠^*)o**
-
-![Google](/img/drivers/google/Google-13-1.png)
-
-
-
-::: details View video tutorial
-
-**https://www.bilibili.com/video/BV18v4y1W7vo/**
-
-:::
-
-
-
-### **The default download method used**
-
-
+9. Click the "Add" button to complete adding Google Drive.
 ```mermaid
 ---
 title: Which download method is used by default?
