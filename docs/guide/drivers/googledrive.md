@@ -25,11 +25,12 @@ Supports team drives (fill in the directory ID of the team drive for the root di
 1. The machine where the OpenList service is deployed must first be able to connect to Google Drive.
 2. The Google Drive API service must be activated. For activation instructions, see [Enabling the Google Drive API](#enabling-the-google-drive-api).
 > Refer to [Google Workspace > Google Drive > Guide](https://developers.google.com/workspace/drive/api/quickstart/js): https://developers.google.com/workspace/drive/api/quickstart/js
+:::
 
 ## 2. Preparations for Integration
 
 ### 2.1. Enabling the Google Drive API
-1. On the [guide page]((https://developers.google.com/workspace/drive/api/quickstart/js)), find the "Enable API" button, click to enter the quick activation interface, and complete the activation after clicking "Next" and "Confirm".
+1. On the [guide page](https://developers.google.com/workspace/drive/api/quickstart/js), find the "Enable API" button, click to enter the quick activation interface, and complete the activation after clicking "Next" and "Confirm".
 2. You can also visit the [Google Drive API management interface](https://console.cloud.google.com/apis/library/drive.googleapis.com), find the "Enable" button at the top, and wait for the activation to complete after clicking.
 3. **Quota and System Limit Management** (optional): Switch to the "Quota and System Limits" tab and set appropriate quotas and limits according to your usage and needs.
 

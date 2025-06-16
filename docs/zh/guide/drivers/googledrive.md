@@ -26,9 +26,11 @@ star: true
 1. 搭建OpenList服务的机器首先要能连接到Google网盘才可以喔~
 2. 必须启动谷歌云盘API服务，启用方式见[启用 Google Drive API 的 API](#启用-google-drive-api-的-api)
 > 参考 [Google Workspace>Google Drive>指南](https://developers.google.com/workspace/drive/api/quickstart/js): https://developers.google.com/workspace/drive/api/quickstart/js
+:::
+
 ## 2.准备接入
 ### 2.1.启用 Google Drive API 的 API
-1. 在[指南页面]((https://developers.google.com/workspace/drive/api/quickstart/js))中找到`启用API`按钮，点击进入快捷开启界面，点击下一步以及确认后，即可完成开启。
+1. 在[指南页面](https://developers.google.com/workspace/drive/api/quickstart/js)中找到`启用API`按钮，点击进入快捷开启界面，点击下一步以及确认后，即可完成开启。
 2. 也可以访问[谷歌云盘API功能管理界面](https://console.cloud.google.com/apis/library/drive.googleapis.com)，在上方找到`启用`按钮，点击后等待启用完成。
 3. `配额和系统限制管理`（可选）:切换到`配额和系统限制`选项卡，根据你的使用情况和需求，设置合适的配额和限制。
 
