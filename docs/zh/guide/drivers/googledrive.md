@@ -119,6 +119,31 @@ star: true
 9. 点击`添加`按钮，完成谷歌云盘的添加。
 
 
+## 4.关于`Use online api`选项的说明
+### 4.1.自身有密钥的情况下，AccessToken刷新的方式
+```mermaid
+sequenceDiagram
+  participant  Openlist
+  participant  GoogleDrive
+  Openlist->>GoogleDrive: 提供刷新令牌+内置的客户端ID和密钥
+  GoogleDrive->>Openlist: 返回新的访问令牌+刷新令牌
+
+```
+### 4.2.自身没有密钥的情况下，AccessToken刷新的方式
+```mermaid
+---
+title: 如何通过OnlineAPI刷新AccessToken？
+---
+sequenceDiagram
+  participant  Openlist
+  participant  OnlineAPI
+  participant  GoogleDrive
+  Openlist->>OnlineAPI: 提供刷新令牌
+  OnlineAPI->>GoogleDrive: 提供刷新令牌+内置的客户端ID和密钥
+  GoogleDrive->>OnlineAPI: 返回新的访问令牌+刷新令牌
+  OnlineAPI->>Openlist: 返回新的访问令牌+刷新令牌
+```
+## 5.默认使用的哪种下载方式？
 ```mermaid
 ---
 title: 默认使用的哪种下载方式？
