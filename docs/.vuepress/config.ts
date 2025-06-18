@@ -1,13 +1,21 @@
 import { defineUserConfig } from "vuepress";
 import { viteBundler } from '@vuepress/bundler-vite'
-import { getDirname, path } from "@vuepress/utils";
+import { getDirname, path } from "vuepress/utils";
 import theme from "./theme.js";
 
 const __dirname = getDirname(import.meta.url);
 
+const getBasePath = () => {
+  const platform = process.env.DEPLOY_PLATFORM;
+  if (platform === 'github') {
+    return '/docs/';
+  }
+  return '/';
+};
+
 export default defineUserConfig({
   theme,
-  base: "/", // For Github Pages
+  base: getBasePath(),
   head: [
     [
       "link",
@@ -25,11 +33,11 @@ export default defineUserConfig({
         rel: "stylesheet"
       }
     ],
-    [
-      "script",
-      {},
-      `!function(p){"use strict";!function(t){var s=window,e=document,i=p,c="".concat("https:"===e.location.protocol?"https://":"http://","sdk.51.la/js-sdk-pro.min.js"),n=e.createElement("script"),r=e.getElementsByTagName("script")[0];n.type="text/javascript",n.setAttribute("charset","UTF-8"),n.async=!0,n.src=c,n.id="LA_COLLECT",i.d=n;var o=function(){s.LA.ids.push(i)};s.LA?s.LA.ids&&o():(s.LA=p,s.LA.ids=[],o()),r.parentNode.insertBefore(n,r)}()}({id:"JopjiIsNYEbnNVF2",ck:"JopjiIsNYEbnNVF2",hashMode:false});`,
-    ],
+    // [
+    //   "script",
+    //   {},
+    //   `!function(p){"use strict";!function(t){var s=window,e=document,i=p,c="".concat("https:"===e.location.protocol?"https://":"http://","sdk.51.la/js-sdk-pro.min.js"),n=e.createElement("script"),r=e.getElementsByTagName("script")[0];n.type="text/javascript",n.setAttribute("charset","UTF-8"),n.async=!0,n.src=c,n.id="LA_COLLECT",i.d=n;var o=function(){s.LA.ids.push(i)};s.LA?s.LA.ids&&o():(s.LA=p,s.LA.ids=[],o()),r.parentNode.insertBefore(n,r)}()}({id:"JopjiIsNYEbnNVF2",ck:"JopjiIsNYEbnNVF2",hashMode:false});`,
+    // ],
     // [
     //   "script",
     //   {},
@@ -130,6 +138,8 @@ export default defineUserConfig({
     ),
     "@Wopan/Token": path.resolve(__dirname, "./components/wopan/Token.vue"),
     "@Pricing": path.resolve(__dirname, "./components/Pricing.vue"),
+    "@Terms": path.resolve(__dirname, "./components/Terms.vue"),
+    "@Privacy": path.resolve(__dirname, "./components/Privacy.vue"),
     "@Desktop": path.resolve(__dirname, "./components/Desktop.vue"),
     "@Changelog": path.resolve(__dirname, "./components/changelog/index.vue"),
     "@Api": path.resolve(__dirname, "./components/api/index.ts"),
