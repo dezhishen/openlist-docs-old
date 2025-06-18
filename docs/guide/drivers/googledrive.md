@@ -119,8 +119,8 @@ Similar to Alibaba Cloud Drive, it is the last string in the official website UR
 
 9. Click the `Add` button to complete the addition of Google Drive.
 
-### 4. Instructions on the "Use online api" Option  
-#### 4.1. AccessToken Refresh Process When Having Your Own Key  
+## 4. Instructions on the "Use online api" Option  
+### 4.1. AccessToken Refresh Process When Having Your Own Key  
 ```mermaid
 sequenceDiagram
   participant  Openlist
@@ -129,7 +129,7 @@ sequenceDiagram
   GoogleDrive->>Openlist: Return new access token & refresh token
 ```  
 
-#### 4.2. AccessToken Refresh Process When Not Having Your Own Key  
+### 4.2. AccessToken Refresh Process When Not Having Your Own Key  
 ```mermaid
 ---
 title: How to Refresh AccessToken via OnlineAPI?
@@ -144,15 +144,7 @@ sequenceDiagram
   OnlineAPI->>Openlist: Return new access token & refresh token
 ```  
 
-### 5. Which Download Method Is Used by Default?  
-
-
-### Explanation:  
-The above content demonstrates the AccessToken refresh logic in two scenarios through flowcharts:  
-- **When having your own key**: Openlist directly interacts with Google Drive to obtain new tokens via the refresh token and client credentials.  
-- **When not having a key**: The OnlineAPI acts as an intermediary. OnlineAPI communicates with Google Drive using built-in credentials and returns the result to Openlist.  
-
-Regarding the default download method, the document does not specify details. It may be necessary to confirm based on the context or the tool's default configuration (e.g., whether direct download,分片下载 (chunked download), or API-based download is prioritized). For a more accurate answer, please supplement the specific usage scenario or configuration instructions of the tool.
+## 5. Which Download Method Is Used by Default?  
 ```mermaid
 ---
 title: Which download method is used by default?
