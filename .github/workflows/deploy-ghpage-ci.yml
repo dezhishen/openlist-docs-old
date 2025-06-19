@@ -1,5 +1,5 @@
 
-name: Deploy Docs
+name: Deploy Docs For Test
 # 手动触发
 on:
   workflow_dispatch:
