@@ -13,3 +13,4 @@ yalc.lock
 dist/
 
 .VSCodeCounter
+package-lock.json
