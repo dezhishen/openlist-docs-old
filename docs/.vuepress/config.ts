@@ -8,7 +8,8 @@ const __dirname = getDirname(import.meta.url);
 const getBasePath = () => {
   const platform = process.env.DEPLOY_PLATFORM;
   if (platform === 'github') {
-    return '/docs/';
+    const repo_name = process.env.REPO_NAME || 'docs';
+    return `/${repo_name}/`;
   }
   return '/';
 };
