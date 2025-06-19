@@ -1,1 +1,0 @@
-const o="/openlist-docs/img/drivers/google/google-ouath-00.png",g="/openlist-docs/img/drivers/google/google-ouath-01.png",s="/openlist-docs/img/drivers/google/google-ouath-02.png";export{o as _,g as a,s as b};
