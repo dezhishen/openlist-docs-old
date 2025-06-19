@@ -54,7 +54,7 @@ star: true
 ![google-ouath-03](/img/drivers/google/google-ouath-03.png)
 
 ### 2.3.获取`访问密钥`和`刷新密钥`
-1. 打开[OpenList Google 授权页面](https://api.oplist.org/) **⚠️如果公益服务器/自建服务器，请访问公益服务器/自建服务器**
+1. 打开[OpenList Google 授权页面](https://api.oplist.org/) **⚠️如果使用公益服务器/自建服务器，请访问公益服务器/自建服务器**
 2. 在页面中下拉框王选择`Google Drive Team`
 
 ![google-00](/img/drivers/google/google-00.png)
