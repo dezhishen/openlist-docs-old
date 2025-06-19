@@ -24,7 +24,7 @@ star: true
 ::: warning 注意事项
 
 1. 搭建OpenList服务的机器首先要能连接到Google网盘才可以喔~
-2. 必须启动谷歌云盘API服务，启用方式见[启用 Google Drive API 的 API](#启用-google-drive-api-的-api)
+2. 必须启动谷歌云盘API服务，启用方式见[启用 Google Drive API 的 API](#_2-1-启用-google-drive-api-的-api)
 > 参考 [Google Workspace>Google Drive>指南](https://developers.google.com/workspace/drive/api/quickstart/js): https://developers.google.com/workspace/drive/api/quickstart/js
 :::
 
@@ -103,7 +103,7 @@ star: true
 
 4. 输入挂载路径，如：`google-drive`。
 5. 在`根文件夹 ID`中填写上面获取的根文件夹 ID，如果使用根目录，请填写`root`。
-6. 刷新令牌中填写上面获取的刷新令牌（如未获取，请参考[准备接入](#2准备接入)）。
+6. 刷新令牌中填写上面获取的刷新令牌（如未获取，请参考[准备接入](#_2-准备接入)）。
 7. 如果你使用的是 `OpenList （或者公益服务器/自建服务器）`提供的 OAuth 客户端 ID 和密钥，请按照`7.1`和`7.2`进行配置
   7.1. 在`Use online api`中勾选，表示使用 OpenList 提供的在线 API。
   7.2. Api url address填写为 `https://api.oplist.org/googleui/renewapi`，如果是`公益服务器/自建服务器`，请填写对应的服务器地址。

@@ -25,7 +25,7 @@ Supports team drives (fill in the directory ID of the team drive for the root di
 ## 1. Necessary Conditions  
 ::: warning Notes  
 1. The machine where the OpenList service is deployed must first be able to connect to Google Drive.  
-2. The Google Drive API service must be activated. For the activation method, see [Enabling the Google Drive API](#enabling-the-google-drive-api).  
+2. The Google Drive API service must be activated. For the activation method, see [Enabling the Google Drive API](#_2-1-enabling-the-google-drive-api).  
 > Refer to [Google Workspace > Google Drive > Guide](https://developers.google.com/workspace/drive/api/quickstart/js): https://developers.google.com/workspace/drive/api/quickstart/js  
 :::  
 
@@ -104,7 +104,7 @@ Similar to Alibaba Cloud Drive, it is the last string in the official website UR
 
 4. Enter the mount path, such as: `google-drive`.  
 5. Enter the root folder ID obtained above in the `Root Folder ID`. If using the root directory, enter `root`.  
-6. Enter the refresh token obtained above in the refresh token (if not obtained, please refer to [Preparation for Integration](#2-preparation-for-integration)).  
+6. Enter the refresh token obtained above in the refresh token (if not obtained, please refer to [Preparation for Integration](#_2-preparation-for-integration) ).  
 7. If you are using the OAuth client ID and secret provided by `OpenList (or Community server/self-hosted server)`, configure according to `7.1` and `7.2`:  
    7.1. Check `Use online api` to indicate using the online API provided by OpenList.  
    7.2. Fill in the Api url address as `https://api.oplist.org/googleui/renewapi`. If it is a `Community server/self-hosted server`, enter the corresponding server address.  
