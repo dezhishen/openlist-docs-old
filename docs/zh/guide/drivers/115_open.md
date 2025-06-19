@@ -47,13 +47,13 @@ headerDepth: 5
 
 ### 2.2.**获取令牌**
 1. 访问[api.oplist.org](https://api.oplist.org) **⚠️如果使用公益服务器/自建服务器，请访问公益服务器/自建服务器的地址**
-2. 在下拉框中选择 **115 网盘验证**
+2. 在下拉框中选择 **115 验证网盘**
 
 ![115-open-01-d](/img/drivers/115/115-open-01-d.png#dark)
 ![115-open-01-l](/img/drivers/115/115-open-01-l.png#light)
 
 3. 如果你使用的是 `OpenList （或者公益服务器/自建服务器）`内置的密钥对（即：自身没有115开放平台的应用信息），请按照`3.1`、`3.2`和`3.3`进行配置
-  3.1. 勾选`使用 OpenList 提供的参数`。
+  3.1. **勾选**`使用 OpenList 提供的参数`。
   3.2. `客户端ID（ClientID/AppID）`和`应用秘钥 (AppKey/Secret)`均**留空**
   3.3. 点击`获取Token`按钮。
 
