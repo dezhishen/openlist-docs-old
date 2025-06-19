@@ -8,6 +8,12 @@ on:
         description: 'Branch to deploy to'
         required: true
         default: 'ci'
+  push:
+    branches:
+      - ci
+  pull_request:
+    paths:
+      - '.github/workflows/deploy-ghpage-ci.yml'
 env:
   REPO_NAME: ${{ github.event.repository.name }} 
 jobs:
