@@ -45,80 +45,93 @@ typeof fetch !== "undefined" && getLimit()
 
 1. ==此工具获取的刷新令牌仅可以用于 **阿里云盘开放平台** 存储挂载方式== 
 
-   
-
 2. OpenList 挂载时填写的 token 也应该是这个工具提供的，之前方式获取的不可以
 
-   
-
 3. 暂不适用于其他，同时也仅限用于 Alist 使用
-
-   
 
 4. 同一 IP 在 =={{ minutes }}== 分钟内请求 =={{ max }}== 次，会出现 **Too Many Requests** :no_entry_sign:避免滥用，请勿滥用:no_entry_sign:
    - 查看文件看视频下载不算，上述的分钟和次数是动态的
    - 新增优化：**只会在请求发现令牌过期时去刷新令牌，更新 重启 编辑如果令牌仍然有效则不会去刷新。**
 
-   
-
 5. 在线播放视频提示：**`ExceedCapacityForbidden`** 错误，容量超限限制播放，需要扩容或者删除不必要的文件释放空间,[查看详情](#四、)
 
-   
-
 6. <i class="fa-solid fa-seal-exclamation fa-beat" style="color: #ff0000;"></i> **==请勿将阿里云盘进行公开分享，禁止帐号被多IP访问，若进行分享后帐号被冻结后果自负== <i class="fa-solid fa-seal-exclamation fa-beat" style="color: #ff0000;"></i> 添加存储后请及时设置元信息等措施防止被{其他人/爬虫}恶意[访问/分享]导致帐号被冻结，其他云盘也一样防止被冻结/封号**
-
-   
 
 7. 禁止使用阿里云盘搭建==包括但不限于== **`图床、软件床`** 和 **`视频外链到视频网站播放`** 等分发服务以及一些没有提到的不规范使用的方式，若违反被`冻结/封号`后果自负，并无法解除。
 
 :::
 
-
-<!--
-:::danger 关于阿里云open的OAuth验证API无法连接
-
-1.  ~~由于原api `https://api.example.com`被sni阻断，导致国内无法连接的情况，故提供两个新的api供使用：~~
-    - ~~`https://api-cf.example.com` (套了一层cloudflare)~~
-    - ~~`https://api.example.com` (辽宁多线， 由[亚洲云](https://www.asiayun.com/aff/QQCOOQKZ)赞助)~~
-2.  需要将`aliyundrive_open`后台配置中的`Oauth令牌链接`更换为
-    - ~~`https://api-cf.example.com/alist/ali_open/token`~~
-    - ~~`https://api.xhofe.top/alist/ali_open/token`~~
-    - ![](/img/drivers/aliyun/aliyun_api.png)
-
-3.  查看详情：https://github.com/alist-org/alist/discussions/4572
-
-4.  是否可以自己搭建授权OAuth验证API？
-    - 需要使用自己申请的开发者帐号搭建
-
-
+## 1.必要条件
+必须有 **115** 的帐号
+::: warning 注意事项
+速度与稳定性与OpenList 的运行机器的性能/网络、阿里云盘服务器的负载有关
 :::
--->
-
-
-
-
-## **刷新令牌**
-
-前往：**https://api.oplist.org**
-
-#### **获取示意图**
-
+## 2.准备接入
+### 2.1.开放平台注册应用（可选，如果使用OpenList/公益服务器/自建服务器内置的密钥对，则不用创建）
 ::: tip
-开发中, 教程暂未更新, 敬请期待!
+请根据阿里云盘开放平台的要求注册应用
 :::
+开放平台地址: [阿里云盘开放平台:https://www.alipan.com/developer/f](https://www.alipan.com/developer/f)
+### 2.2.**获取令牌**
+1. 访问[api.oplist.org](https://api.oplist.org) **⚠️如果使用公益服务器/自建服务器，请访问公益服务器/自建服务器的地址**
+2. 在下拉框中选择 **阿里云盘 应用登录**
 
-<!--
-以下两种方式都可以获得 **refresh_token**
+![aliyun-open-01-d](/img/drivers/aliyun/aliyun-open-01-d.png#dark)
+![aliyun-open-01-l](/img/drivers/aliyun/aliyun-open-01-l.png#light)
 
-<div class="image-preview">  
-    <img src="/img/drivers/aliyun/token1.png" alt="Go to login" title="Go to login-登录云盘帐号"/>
-    <img src="/img/drivers/aliyun/token2.png" alt="Scan QrCode" title="Scan QrCode-扫描获取"/>
-</div>
--->
+3. 如果你使用的是 `OpenList （或者公益服务器/自建服务器）`内置的密钥对（即：自身没有阿里云盘开放平台的应用信息），请按照`3.1`、`3.2`和`3.3`进行配置
+   3.1. **勾选**`使用 OpenList 提供的参数`。
+   3.2. `客户端ID（ClientID/AppID）`和`应用秘钥 (AppKey/Secret)`均**留空**
+   3.3. 点击`获取Token`按钮。
 
+![aliyun-open-02-01-d](/img/drivers/aliyun/aliyun-open-02-01-d.png#dark)
+![aliyun-open-02-01-l](/img/drivers/aliyun/aliyun-open-02-01-l.png#light)
 
-## **根文件夹ID**
+4. 如果你使用的是自己创建的 OAuth 客户端 ID 和密钥，请按照`4.1`、`4.2`和`4.3`进行配置
+   4.1. **不要**勾选`使用 OpenList 提供的参数`。
+   4.2. 在`客户端ID`中填写你的`AppId`，在`应用密钥`中填写你的`AppSecret`
+   4.3. 点击`获取Token`按钮。
 
+![aliyun-open-02-02-d](/img/drivers/aliyun/aliyun-open-02-02-d.png#dark)
+![aliyun-open-02-02-l](/img/drivers/aliyun/aliyun-open-02-02-l.png#light)
+
+5. 在弹出的窗口中，扫码登录你的阿里云盘。
+![aliyun-open-03](/img/drivers/aliyun/aliyun-open-03.png)
+6. 授权成功后，页面会显示你的 `访问令牌（Access Token）` 和 `刷新令牌（Refresh Token）`，请复制并保存这两个令牌。
+![aliyun-open-04](/img/drivers/aliyun/aliyun-open-04-d.png#dark)
+![aliyun-open-04](/img/drivers/aliyun/aliyun-open-04-l.png#light)
+
+## 3.在 OpenList 中添加阿里云盘
+### 3.1.开始添加
+1. 打开 OpenList 的管理界面，点击左侧菜单中的`存储`。
+2. 在存储列表页面，点击右上角的`添加存储`按钮
+3. 选择驱动为`阿里云盘(Oauth2)`。
+4. 输入挂载路径，如：`aliyun-drive`。
+5. 在`根文件夹 ID`中填写上面获取的根文件夹 ID，如果使用根目录，请填写`root`。见[配置说明/根文件夹 ID](#_3-2-1-根文件夹-id)。
+![aliyun-open-05-l](/img/drivers/aliyun/aliyun-open-05-l.png#light)
+![aliyun-open-05-d](/img/drivers/aliyun/aliyun-open-05-d.png#dark)
+5. 在刷新令牌中填写上面获取的刷新令牌（如未获取，请参考[准备接入](#_2-准备接入)）。
+6. 如果你使用的是 `OpenList （或者公益服务器/自建服务器）`提供的 OAuth 客户端 ID 和密钥，请按照`6.1`、`6.2`和`6.3`进行配置
+  6.1. **勾选**`Use online api`。
+  6.2. `客户端ID（ClientID/AppID）`和`应用秘钥 (AppKey/Secret)`均**留空**。
+  6.3. 在`Api url address`中填写 `https://api.oplist.org/alicloud/renewapi`，如果是`公益服务器/自建服务器`，请填写对应的服务器地址。
+![aliyun-open-06-l](/img/drivers/aliyun/aliyun-open-06-l.png#light)
+![aliyun-open-06-d](/img/drivers/aliyun/aliyun-open-06-d.png#dark)
+7. 如果你使用的是自己创建的 OAuth 客户端 ID 和密钥，请按照`7.1`、`7.2`和`7.3`进行配置
+  7.1. **不要**勾选`Use online api`。
+  7.2. 在`客户端ID（ClientID/AppID）`中填写你的`AppId`，在`应用秘钥 (AppKey/Secret)`中填写你的`AppSecret`。见[配置说明/客户端 ID，秘钥](#_3-2-2-客户端-id-秘钥)。
+  7.3. `Api url address`留空
+![aliyun-open-07-l](/img/drivers/aliyun/aliyun-open-07-l.png#light)
+![aliyun-open-07-d](/img/drivers/aliyun/aliyun-open-07-d.png#dark)
+8. 在`秒传`选项中，选择是否启用秒传功能（可选）。 见[配置说明/秒传](#_3-2-3-秒传)。
+9. 在`移除方式`中，选择删除文件的方式（可选），默认是回收站。见[配置说明/移除方式](#_3-2-4-移除方式)。
+10. 在`云盘类型`中，选择云盘类型（可选），默认是`默认`类型。见[配置说明/云盘类型](#_3-2-5-云盘类型)。
+11. 在`Livp 下载格式`中，选择下载实况照片的格式（可选），默认是`Jpeg`。见[配置说明/Livp 下载格式](#_3-2-6-livp-下载格式)。
+12. 在`内部上传`中，选择是否启用内部上传（可选），默认是关闭。见[配置说明/内部上传](#_3-2-7-内部上传)。
+13. 点击`添加`按钮，完成阿里云盘的添加。
+
+### 3.2.配置说明
+#### 3.2.1.**根文件夹 ID**
 默认为`root`，展示全部云盘内容，若只想展示某文件夹內内容，可以改为`file_id `
 
 打开阿里云盘官网，点击进入要设置的文件夹时点击 URL 后面的字符串
@@ -133,7 +146,7 @@ typeof fetch !== "undefined" && getLimit()
 
 
 
-## **客户端 ID，秘钥**
+#### 3.2.2.**客户端 ID，秘钥**
 
 正常用户不需要填写为空即可，如果自己申请了官方授权也可以使用自己的进行填写，为空时默认使用 OpenList 提供的。
 
@@ -143,7 +156,7 @@ typeof fetch !== "undefined" && getLimit()
 
 
 
-## **秒传**
+#### 3.2.3.**秒传**
 
 - **v.3.22.1** 版本 新增功能
 
@@ -165,19 +178,21 @@ typeof fetch !== "undefined" && getLimit()
 
 
 
-## **移除方式**
+#### 3.2.4.**移除方式**
 
 不进行设置默认是删除到回收站內了，如果空间不够需要自己手动清理回收站/若删错文件请前往阿里云盘官网客户端进行找回恢复
 
 - **回收站**：在OpenList删除后进入网盘回收站，会占用云盘空间，但是后期如果误删可以找回。
 - **删除**：直接删除不会停留在回收站，不会占用云盘空间，但是后期如果误删不能找回。
-  - 注：请勿泄露自己阿里云盘Open获取的Token， ==若不小心泄露请立刻马上去  [**其他说明 ¹**](#打开-阿里云盘-app-我的-右上角设置齿轮-隐私设置-授权管理-点击-alist-进行查看) 解除授权,再重新扫码授权换新的刷新令牌，同时解除授权后之前获取的都会失效，以保护您账号的安全== 
+  - 注：请勿泄露自己阿里云盘Open获取的Token， 若不小心泄露请立刻：
+  - **打开-阿里云盘-app-我的-右上角设置齿轮-隐私设置-授权管理-点击-openlist-进行查看和解除授权**
+  - 再重新扫码授权换新的刷新令牌，同时解除授权后之前获取的都会失效，以保护您账号的安全== 
 
 <br/>
 
 
 
-## **云盘类型**
+#### 3.2.5.**云盘类型**
 
 云盘类型可以选择，可以自己的需求选择不同类型，使用 v3.25.1及以上版本的OpenList添加驱动时进行设置，默认选择的是`默认`类型
 
@@ -194,7 +209,7 @@ typeof fetch !== "undefined" && getLimit()
 
 
 
-## **Livp 下载格式**
+#### 3.2.6.**Livp 下载格式**
 
 即 IOS`实况`照片因为非IOS系统无法解析，然后就无法下载，现根据自己的需求是需要`Jpeg`还是`Mov`
 
@@ -205,7 +220,7 @@ typeof fetch !== "undefined" && getLimit()
 
 
 
-## **内部上传**
+#### 3.2.7.**内部上传**
 
 如果你部署 OpenList 的服务器是阿里云北京地区ECS，打开此开关可以提升文件上传速度。不符合要求的服务器请不要打开此开关，否则会出现无法上传的问题。
 
@@ -215,9 +230,9 @@ typeof fetch !== "undefined" && getLimit()
 
 
 
-## **其他说明**
+## 4.**其他说明**
 
-##### 一、
+### 4.1.权限范围
 
 > OpenList 仅获取了 云盘用户 (**名称 头像 ¹**)，(**访问文件权限 ²**)和(**写入文件权限 ³**)，未获取手机号权限
 >
@@ -228,7 +243,7 @@ typeof fetch !== "undefined" && getLimit()
 >    
 >    - 若不使用了可以随时手动解除权限
 
-##### 二、
+### 4.2.关于视频播放
 
 > 默认使用的是阿里云盘自带播放器 - **Aliyun Video Previewer**
 >
@@ -239,21 +254,14 @@ typeof fetch !== "undefined" && getLimit()
 > - 实时转码需要一定时间。
 > - 画质分别为：LD|SD|HD|FHD|QHD
 
-##### 三、
+### 4.3.Office 全家桶文件无法查看
 
 >Q：阿里云盘Open怎么看不了 Office 全家桶类型的文件
 >
 >A：~~因为阿里云盘未开放相关API故暂时无法查看~~（敬请期待）
 
-##### 四、
 
->Q：在线播放阿里云盘视频无法播放，提示：**`ExceedCapacityForbidden`** 错误
->
->A：**用户容量超限**，限制播放，需要扩容或者删除不必要的文件释放空间，在OpenList和阿里云盘官方APP分别如下图提示
->
-><img src="/img/drivers/aliyun/error.png" style="zoom:70%;" />
-
-##### 五、
+### 4.4.字幕加载
 
 >Q：如何加载字幕？
 >
@@ -261,15 +269,21 @@ typeof fetch !== "undefined" && getLimit()
 >
 >- 目前只支持转码 eng、jpn、chi 三种语言，其他语言会丢失
 
-##### 六、
+### 4.5.常见问题
+1. UserNotAllowedAccessResource
 
->Q：在阿里云盘查看视频提示 `转码中，请稍后重试` 和 在OpenList挂载提示：`failed link: failed get link: UserNotAllowedAccessResource:user not allowed access resource for violation`
+> Q：在线播放阿里云盘视频无法播放，提示：**`UserNotAllowedAccessResource`** 错误
+>A：**用户容量超限**，限制播放，需要扩容或者删除不必要的文件释放空间，在OpenList和阿里云盘官方APP分别如下图提示
+
+2. 转码中，请稍后重试
+
+> Q：在阿里云盘查看视频提示 `转码中，请稍后重试` 和 在OpenList挂载提示：`failed link: failed get link: UserNotAllowedAccessResource:user not allowed access resource for violation`
 >
 >A：代表帐号已经被冻结（以前都是直接无法登录），具体情况请查看顶部的红色内容注意事项
 
 
 
-## **默认使用的下载方式**
+## 5.**默认使用的下载方式**
 
 ```mermaid
 ---
