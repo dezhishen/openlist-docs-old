@@ -62,7 +62,7 @@ typeof fetch !== "undefined" && getLimit()
 :::
 
 ## 1.必要条件
-必须有 **115** 的帐号
+必须有 **阿里云盘** 的帐号
 ::: warning 注意事项
 速度与稳定性与OpenList 的运行机器的性能/网络、阿里云盘服务器的负载有关
 :::
@@ -273,7 +273,9 @@ typeof fetch !== "undefined" && getLimit()
 1. UserNotAllowedAccessResource
 
 > Q：在线播放阿里云盘视频无法播放，提示：**`UserNotAllowedAccessResource`** 错误
->A：**用户容量超限**，限制播放，需要扩容或者删除不必要的文件释放空间，在OpenList和阿里云盘官方APP分别如下图提示
+>A：**用户容量超限**，限制播放，需要扩容或者删除不必要的文件释放空间
+> - 在openlist中提示：`ExceedCapacity Forbidden: Execeed Capactity Forbidden`
+> - 在阿里云盘查看视频提示：`云盘可用空间不足`
 
 2. 转码中，请稍后重试
 

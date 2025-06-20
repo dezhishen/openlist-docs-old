@@ -61,7 +61,7 @@ typeof fetch !== "undefined" && getLimit()
 :::
 
 ### 1. Necessary Conditions  
-A **115** account is required.  
+A **AliyunDrive** account is required.  
 ::: warning Notes  
 Speed and stability are related to the performance/network of the machine running OpenList and the load on the AliYun Drive server.  
 :::  
@@ -222,7 +222,9 @@ If the server where OpenList is deployed is an AliYun ECS in the Beijing region,
 #### 4.5. Common Issues  
 1. **UserNotAllowedAccessResource**  
 > Q: When playing AliYun Drive videos online, it cannot play and prompts the error: **`UserNotAllowedAccessResource`**.  
-> A: **The user's capacity is exceeded**, restricting playback. You need to expand the capacity or delete unnecessary files to free up space. The prompts in OpenList and the official AliYun Drive app are as shown below:  
+> A: **The user's capacity is exceeded**, restricting playback. You need to expand the capacity or delete unnecessary files to free up space
+> - In OpenList, it prompts: `ExceedCapacity Forbidden: Execeed Capactity Forbidden`.
+> - In AliYun Drive, it prompts: `云盘可用空间不足` (Insufficient available space in cloud drive).
 
 2. Transcoding in progress, please try again later.  
 > Q: When viewing a video in AliYun Drive, it prompts `Transcoding in progress, please try again later`, and when mounting in OpenList, it prompts: `failed link: failed get link: UserNotAllowedAccessResource: user not allowed access resource for violation`.  
