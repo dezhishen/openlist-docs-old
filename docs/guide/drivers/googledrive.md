@@ -58,17 +58,20 @@ Supports team drives (fill in the directory ID of the team drive for the root di
 
 ### 2.3. Obtaining `Access Token` and `Refresh Token`  
 1. Open the [OpenList Google Authorization Page](https://api.oplist.org/) **⚠️ If using a Community server/self-hosted server, visit the Community server/self-hosted server**.  
-2. In the drop-down box on the page, select `Google Drive Team`.  
+2. In the drop-down box on the page, select `GoogleDrive Login`.  
 
-![google-00](/img/drivers/google/google-00.png)  
+![google-00-l](/img/drivers/google/google-00-l.png#light)
+![google-00-d](/img/drivers/google/google-00-d.png#dark)  
 
 3. If you created an OAuth client ID in the above steps, enter the created `Client ID` and `Client Secret` in the following input boxes.  
 
-![google-01-01](/img/drivers/google/google-01-01.png)  
+![google-01-01-l](/img/drivers/google/google-01-01-l.png#light)
+![google-01-01-d](/img/drivers/google/google-01-01-d.png#dark)  
 
 Otherwise, check ☑️ to use the API provided by OpenList. **⚠️ If using a Community server/self-hosted server, the built-in client ID and application secret of the Community server/self-hosted server are used at this time**.  
 
-![google-01-02](/img/drivers/google/google-01-02.png)  
+![google-01-02-l](/img/drivers/google/google-01-02-l.png#light)
+![google-01-02-d](/img/drivers/google/google-01-02-d.png#dark)  
 
 4. Click the `Get Authorization` button, the system will jump to the Google authorization page, log in to your Google account, and authorize OpenList to access your Google Drive.  
 
@@ -84,7 +87,8 @@ Otherwise, check ☑️ to use the API provided by OpenList. **⚠️ If using a
 
 6. After successful authorization, the system will return a `Refresh Token` and `Access Token`. Please copy and save the token for use in subsequent configurations.  
 
-![google-04](/img/drivers/google/google-05.png)  
+![google-05-l](/img/drivers/google/google-05-l.png#light)
+![google-05-d](/img/drivers/google/google-05-d.png#dark)
 
 
 ## 3. Adding Google Drive to Alist  
@@ -93,14 +97,15 @@ Otherwise, check ☑️ to use the API provided by OpenList. **⚠️ If using a
 #### 3.1.1. **Root Folder ID**  
 Similar to Alibaba Cloud Drive, it is the last string in the official website URL, such as:  
 
-![google](/img/drivers/google/googledrive-dir.png)  
+![google](/img/drivers/google/googledrive-dir.png)
 
 ### 3.2. Starting to Add  
 1. Open the Alist management interface and click the `Storage` menu on the left.  
 2. On the storage list page, click the `Add Storage` button in the upper right corner.  
 3. Select the driver as `Google Drive`.  
 
-![google](/img/drivers/google/google-06.png)  
+![google-06-l](/img/drivers/google/google-06-l.png#light)
+![google-06-d](/img/drivers/google/google-06-d.png#dark)
 
 4. Enter the mount path, such as: `google-drive`.  
 5. Enter the root folder ID obtained above in the `Root Folder ID`. If using the root directory, enter `root`.  
@@ -109,13 +114,15 @@ Similar to Alibaba Cloud Drive, it is the last string in the official website UR
    7.1. Check `Use online api` to indicate using the online API provided by OpenList.  
    7.2. Fill in the Api url address as `https://api.oplist.org/googleui/renewapi`. If it is a `Community server/self-hosted server`, enter the corresponding server address.  
 
-![google](/img/drivers/google/google-07.png) 
+![google-07-d](/img/drivers/google/google-07-d.png#dark)
+![google-07-l](/img/drivers/google/google-07-l.png#light)
 
 8. If you are using your own created OAuth client ID and secret, configure according to `8.1` and `8.2`:  
    8.1. Do not check `Use online api` to indicate using your own built OAuth client ID and secret.  
    8.2. Enter your `Oauth Client ID` in `Client ID` and your `Oauth Client Secret` in `Client Secret`.  
-   
-![google](/img/drivers/google/google-08.png) 
+
+![google-08-l](/img/drivers/google/google-08-l.png#light)
+![google-08-d](/img/drivers/google/google-08-d.png#dark)
 
 9. Click the `Add` button to complete the addition of Google Drive.
 

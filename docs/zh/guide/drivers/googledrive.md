@@ -55,17 +55,21 @@ star: true
 
 ### 2.3.获取`访问密钥`和`刷新密钥`
 1. 打开[OpenList Google 授权页面](https://api.oplist.org/) **⚠️如果使用公益服务器/自建服务器，请访问公益服务器/自建服务器**
-2. 在页面中下拉框王选择`Google Drive Team`
+2. 在页面中下拉框中选择`GoogleDrive Login`
 
-![google-00](/img/drivers/google/google-00.png)
+![google-00-l](/img/drivers/google/google-00-l.png#light)
+![google-00-d](/img/drivers/google/google-00-d.png#dark)  
+
 
 3. 如果在上面的步骤中创建了 OAuth 客户端 ID，请在下方输入框中填写刚才创建的`客户端 ID`和`客户端密钥`
 
-![google-01-01](/img/drivers/google/google-01-01.png)
+![google-01-01-l](/img/drivers/google/google-01-01-l.png#light)
+![google-01-01-d](/img/drivers/google/google-01-01-d.png#dark)  
 
 否则勾选☑️使用 OpenList 提供的API。**⚠️如果使用的公益服务器/自建服务器，此时使用的是公益服务器/自建服务器内置的客户端ID和应用机密**
 
-![google-01-02](/img/drivers/google/google-01-02.png)
+![google-01-02-l](/img/drivers/google/google-01-02-l.png#light)
+![google-01-02-d](/img/drivers/google/google-01-02-d.png#dark)  
 
 4. 点击`获取授权`按钮，系统会跳转到 Google 授权页面，登录你的 Google 账号，并授权 OpenList 访问你的 Google Drive。
 
@@ -82,7 +86,8 @@ star: true
 
 6. 授权成功后，系统会返回一个`刷新密钥`和`访问密钥`，请复制并保存该令牌，后续的配置中会使用。
 
-![google-04](/img/drivers/google/google-05.png)
+![google-05-l](/img/drivers/google/google-05-l.png#light)
+![google-05-d](/img/drivers/google/google-05-d.png#dark)
 
 
 ## 3.在alist中添加谷歌云盘
@@ -99,7 +104,8 @@ star: true
 2. 在存储列表页面，点击右上角的`添加存储`按钮。
 3. 选择驱动为`谷歌云盘（Google Drive）`。
 
-![google](/img/drivers/google/google-06.png)
+![google-06-l](/img/drivers/google/google-06-l.png#light)
+![google-06-d](/img/drivers/google/google-06-d.png#dark)
 
 4. 输入挂载路径，如：`google-drive`。
 5. 在`根文件夹 ID`中填写上面获取的根文件夹 ID，如果使用根目录，请填写`root`。
@@ -108,13 +114,15 @@ star: true
   7.1. 在`Use online api`中勾选，表示使用 OpenList 提供的在线 API。
   7.2. Api url address填写为 `https://api.oplist.org/googleui/renewapi`，如果是`公益服务器/自建服务器`，请填写对应的服务器地址。
 
-![google](/img/drivers/google/google-07.png) 
+![google-07-d](/img/drivers/google/google-07-d.png#dark)
+![google-07-l](/img/drivers/google/google-07-l.png#light)
 
 8. 如果你使用的是自己创建的 OAuth 客户端 ID 和密钥，请按照`8.1`和`8.2`进行配置
   8.1. 在`Use online api`中不勾选，表示使用自建的 OAuth 客户端 ID 和密钥。
   8.2. 在`客户端ID`中填写你的`Oauth 客户端 ID`，在`客户端密钥`中填写你的`Oauth 客户端密钥`
 
-![google](/img/drivers/google/google-08.png) 
+![google-08-l](/img/drivers/google/google-08-l.png#light)
+![google-08-d](/img/drivers/google/google-08-d.png#dark)
 
 9. 点击`添加`按钮，完成谷歌云盘的添加。
 
