@@ -220,8 +220,8 @@ If the server where OpenList is deployed is an AliYun ECS in the Beijing region,
 
 
 #### 4.5. Common Issues  
-1. **UserNotAllowedAccessResource**  
-> Q: When playing AliYun Drive videos online, it cannot play and prompts the error: **`UserNotAllowedAccessResource`**.  
+1. **ExceedCapacityForbidden**  
+> Q: When playing AliYun Drive videos online, it cannot play and prompts the error: **`ExceedCapacityForbidden`**.  
 > A: **The user's capacity is exceeded**, restricting playback. You need to expand the capacity or delete unnecessary files to free up space
 > - In OpenList, it prompts: `ExceedCapacity Forbidden: Execeed Capactity Forbidden`.
 > - In AliYun Drive, it prompts: `云盘可用空间不足` (Insufficient available space in cloud drive).

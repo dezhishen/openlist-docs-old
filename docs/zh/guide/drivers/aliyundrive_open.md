@@ -270,9 +270,9 @@ typeof fetch !== "undefined" && getLimit()
 >- 目前只支持转码 eng、jpn、chi 三种语言，其他语言会丢失
 
 ### 4.5.常见问题
-1. UserNotAllowedAccessResource
+1. ExceedCapacityForbidden
 
-> Q：在线播放阿里云盘视频无法播放，提示：**`UserNotAllowedAccessResource`** 错误
+> Q：在线播放阿里云盘视频无法播放，提示：**`ExceedCapacityForbidden`** 错误
 >A：**用户容量超限**，限制播放，需要扩容或者删除不必要的文件释放空间
 > - 在openlist中提示：`ExceedCapacity Forbidden: Execeed Capactity Forbidden`
 > - 在阿里云盘查看视频提示：`云盘可用空间不足`
