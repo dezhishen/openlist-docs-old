@@ -1,0 +1,1 @@
+const s="/openlist-docs-old/img/advanced/s3/s3_config.png",o="/openlist-docs-old/img/advanced/s3/s3_add_backup.png",d="/openlist-docs-old/img/advanced/s3/s3browser.png",n="/openlist-docs-old/img/advanced/s3/s3drive.png";export{s as _,o as a,n as b,d as c};
